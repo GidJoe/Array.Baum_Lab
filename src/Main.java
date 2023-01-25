@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -34,7 +33,6 @@ public class Main {
         }
 
 
-        System.out.println(start);
         // point.x = Zeile
 
         int[][] distanz = new int[laby.length][laby[0].length];
@@ -42,6 +40,7 @@ public class Main {
         for (int[] sub : distanz) {
             Arrays.fill(sub, -1);
         }
+
 
         // Spieler positionieren
         distanz[start.x][start.y] = 0;
@@ -56,7 +55,6 @@ public class Main {
             standfeld = suche.get(0);
 
 
-
             // guck nach oben
             if (standfeld.x > 0) {  // wir stehen nicht oben am Rand
                 if (laby[standfeld.x - 1][standfeld.y] != '#'
@@ -68,7 +66,7 @@ public class Main {
 
             // guck nach unten
 
-            if (standfeld.x > 0) {  // wir stehen nicht oben am Rand
+            if (standfeld.x < laby.length - 1) {  // wir stehen nicht oben am Rand
                 if (laby[standfeld.x + 1][standfeld.y] != '#'
                         && distanz[standfeld.x + 1][standfeld.y] == -1) {
                     distanz[standfeld.x + 1][standfeld.y] = distanz[standfeld.x][standfeld.y] + 1;
@@ -78,7 +76,7 @@ public class Main {
 
             // guck nach links
 
-            if (standfeld.x > 0) {  // wir stehen nicht oben am Rand
+            if (standfeld.y > 0) {  // wir stehen nicht oben am Rand
                 if (laby[standfeld.x][standfeld.y - 1] != '#'
                         && distanz[standfeld.x][standfeld.y - 1] == -1) {
                     distanz[standfeld.x][standfeld.y - 1] = distanz[standfeld.x][standfeld.y] + 1;
@@ -87,7 +85,7 @@ public class Main {
             }
             // guck nach rechts
 
-            if (standfeld.x > 0) {  // wir stehen nicht oben am Rand
+            if (standfeld.y < laby[0].length - 1) {  // wir stehen nicht oben am Rand
                 if (laby[standfeld.x][standfeld.y + 1] != '#'
                         && distanz[standfeld.x][standfeld.y + 1] == -1) {
                     distanz[standfeld.x][standfeld.y + 1] = distanz[standfeld.x][standfeld.y] + 1;
@@ -99,11 +97,21 @@ public class Main {
             suche.remove(standfeld);
         }
 
-
+        distanz[10][1] = 111;
+        System.out.println(distanz[10][1]);
+        String ausgabe = "";
         for (int i = 0; i < laby.length; i++) {
-            System.out.println(Arrays.toString(distanz[i]));
+            ausgabe += Arrays.toString(distanz[i]) + "\n";
 
         }
 
+
+        System.out.println(ausgabe.replace(",", "\t")
+                .replace("-1", "██")
+                .replace("[", " ")
+                .replace("]", " ")
+                .replace("111", "☺")
+        );
     }
 }
+
