@@ -98,7 +98,7 @@ public class Main {
         }
 
         distanz[10][1] = 111;
-        System.out.println(distanz[10][1]);
+
         String ausgabe = "";
         for (int i = 0; i < laby.length; i++) {
             ausgabe += Arrays.toString(distanz[i]) + "\n";
