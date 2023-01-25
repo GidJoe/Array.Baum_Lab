@@ -68,7 +68,7 @@ public class Main {
 
             // guck nach unten
 
-            if (standfeld.x < 0) {  // wir stehen nicht oben am Rand
+            if (standfeld.x > 0) {  // wir stehen nicht oben am Rand
                 if (laby[standfeld.x + 1][standfeld.y] != '#'
                         && distanz[standfeld.x + 1][standfeld.y] == -1) {
                     distanz[standfeld.x + 1][standfeld.y] = distanz[standfeld.x][standfeld.y] + 1;
